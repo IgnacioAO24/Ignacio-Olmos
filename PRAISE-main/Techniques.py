@@ -20,3 +20,5 @@ if __name__ == "__main__":
     board = repository.load_board("easy/board01.json")
     candidates = get_candidates(board.grid)
     print(candidates)
+    
+    

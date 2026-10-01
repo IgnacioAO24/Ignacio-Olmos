@@ -25,7 +25,7 @@ class SudokuAgent(Agent):
     def __init__(self, env):
         super().__init__()
         env.add(self.id)
-
+        env = 
         placer = PlaceNumberActuator(env)
         placer.agent = self
         self.add_actuator("placer", placer)
