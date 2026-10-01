@@ -32,3 +32,7 @@ class SudokuEnvironment(SimulatedEnvironment):
                     self.board[row][col] = 0
             else: 
                     print (f"invalid action: {action_name}")
+            for entry in self._statebuffers:
+                if entry["agent_id"] == agent_id:
+                    entry["statebuffer"].update({"board": [row[:] for row in self.board]})
+                
