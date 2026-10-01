@@ -31,7 +31,7 @@ class SimulatedEnvironment(metaclass=ABCMeta):
     @abstractmethod
     def take_action(self, agent_id: int, action_name: str, params: dict = {}) -> None:
         pass
-
+dfc
 
 class SimulatedSensor(agents.Sensor):
 
