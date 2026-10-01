@@ -32,7 +32,7 @@ class SimulatedEnvironment(metaclass=ABCMeta):
     def take_action(self, agent_id: int, action_name: str, params: dict = {}) -> None:
         pass
 
-gbbg
+
 class SimulatedSensor(agents.Sensor):
 
     def __init__(self, e: SimulatedEnvironment):
