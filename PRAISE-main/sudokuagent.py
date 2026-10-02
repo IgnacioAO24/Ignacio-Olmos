@@ -1,5 +1,6 @@
 from environments import SimulatedSensor, SimulatedActuator
 from agents import Agent
+from statebuffer import StateBuffer
 class BoardSensor(SimulatedSensor):
 
     def sense(self):
@@ -25,7 +26,6 @@ class SudokuAgent(Agent):
     def __init__(self, env):
         super().__init__()
         env.add(self.id)
-        env = 
         placer = PlaceNumberActuator(env)
         placer.agent = self
         self.add_actuator("placer", placer)
@@ -40,6 +40,9 @@ class SudokuAgent(Agent):
         self._empty_cells = None
         self._pointer = 0
         self._finished = False
+        self._env = env
+    
+    
         
     @property
     def finished(self):
@@ -118,3 +121,11 @@ class SudokuAgent(Agent):
         percept = self._perceive()
         self._act(percept)
         
+    def run(self, renderer = None):
+        statebuffer = StateBuffer(self.id, self._env)
+        renderer.observe(statebuffer)
+        renderer.render(force=True, titulo="Tablero inicial")
+        while not self.finished:
+            self.behave()
+            renderer.render()
+        renderer.render(force=True, titulo="Tablero final")
