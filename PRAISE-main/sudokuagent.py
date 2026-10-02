@@ -77,6 +77,7 @@ class SudokuAgent(Agent):
 
         if self._pointer >= len(self._empty_cells):
             self._finished = True
+            print("Solved!")
             return {"name": "noop"}
 
         row, col = self._empty_cells[self._pointer]
@@ -95,6 +96,7 @@ class SudokuAgent(Agent):
             self._pointer -= 1
             if self._pointer < 0:
                 self._finished = True
+                print("No solution found.")
                 return {"name": "noop"}
             return {"name": "clear", "params": {"row": row, "col": col}}
 

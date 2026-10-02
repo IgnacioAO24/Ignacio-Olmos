@@ -18,11 +18,13 @@ def chosen_difficulty():
     return options [difficulty]
     
 if __name__ == '__main__':
+    print("Sudoku Solver")
     clear_terminal()
     difficulty = chosen_difficulty()
     print(repr(difficulty))
     repository = SudokuRepository()
     board_path = repository.random_path(difficulty)
+    print(board_path)
     env = SudokuEnvironment(board_path)
     agent = SudokuAgent(env)
     renderer = ConsoleRenderer()
