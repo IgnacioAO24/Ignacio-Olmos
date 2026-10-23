@@ -123,11 +123,4 @@ class SudokuAgent(Agent):
         percept = self._perceive()
         self._act(percept)
         
-    def run(self, renderer = None):
-        statebuffer = StateBuffer(self.id, self._env)
-        renderer.observe(statebuffer)
-        renderer.render(force=True, titulo="Tablero inicial")
-        while not self.finished:
-            self.behave()
-            renderer.render()
-        renderer.render(force=True, titulo="Tablero final")
+   

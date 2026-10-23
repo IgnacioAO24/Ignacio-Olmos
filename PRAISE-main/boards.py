@@ -26,7 +26,3 @@ class SudokuRepository:
         files = list(self._path.glob(f"{difficulty}/*.json"))
         chosen = random.choice(files)
         return str(chosen.relative_to(self._path))        
-if __name__ == "__main__":
-    repo = SudokuRepository()
-    board = repo.load_random()
-   

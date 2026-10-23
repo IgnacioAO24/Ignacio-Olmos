@@ -3,6 +3,7 @@ from SudokuWorld import SudokuEnvironment
 from sudokuagent import SudokuAgent
 from boards import SudokuRepository
 from sudokurenderers import ConsoleRenderer
+from statebuffer import StateBuffer
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -16,16 +17,29 @@ def chosen_difficulty():
     """
     difficulty = input(mensaje)
     return options [difficulty]
+
+def run(agent, env, renderer):
+    statebuffer = StateBuffer(agent.id, env)
+    renderer.observe(statebuffer)
+    renderer.render(force=True, titulo="Tablero inicial")
+    while not agent.finished:
+        agent.behave()
+        renderer.render()
+    renderer.render(force=True, titulo="Tablero final")
     
 if __name__ == '__main__':
-    print("Sudoku Solver")
     clear_terminal()
+    print("Sudoku Solver")
     difficulty = chosen_difficulty()
-    print(repr(difficulty))
     repository = SudokuRepository()
-    board_path = repository.random_path(difficulty)
-    print(board_path)
-    env = SudokuEnvironment(board_path)
+    board = repository.load_random(difficulty)
+    env = SudokuEnvironment(board)
     agent = SudokuAgent(env)
     renderer = ConsoleRenderer()
-    agent.run(renderer)
+    run(agent, env, renderer)
+    
+    
+    
+    
+    #print(repr(difficulty))
+    #print(board_path)
