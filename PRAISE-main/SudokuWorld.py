@@ -7,7 +7,7 @@ class SudokuEnvironment(SimulatedEnvironment):
             
     def get_property (self, agent_id: int, property_name: str) -> dict:
         if agent_id in self._agents:
-            response = {"agent": agent_id}
+            response = {property_name: None}
             if property_name == "board":
                 response["board"] = [row[:] for row in self.board]
             else:
@@ -16,7 +16,7 @@ class SudokuEnvironment(SimulatedEnvironment):
         return {}
     
 
-    def take_action (self, agent_id:int, action_name:str, params:dict = {}) -> None:
+    def take_action (self, agent_id:int, action_name:str, params:dict = None) -> None:
         if agent_id in self._agents:
             if action_name == "place":
                 row, col, value = params.get("row"), params.get("col"), params.get("value")

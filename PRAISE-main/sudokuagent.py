@@ -1,6 +1,5 @@
 from environments import SimulatedSensor, SimulatedActuator
 from agents import Agent
-from statebuffer import StateBuffer
 class BoardSensor(SimulatedSensor):
 
     def sense(self):
@@ -40,7 +39,7 @@ class SudokuAgent(Agent):
         self._empty_cells = None
         self._pointer = 0
         self._finished = False
-        self._env = env
+
     
     
         
